@@ -36,7 +36,7 @@ const Home = () => {
             </a>
           ))}
           <a
-            className=" hover:text-white flex items-center gap-2 mt-40"
+            className="hover:text-white flex items-center gap-2 mt-40"
             onClick={() => setMode(!mode)}
           >
             {!mode ? <CiLight size={24} /> : <CiDark size={24} />}
@@ -51,7 +51,7 @@ const Home = () => {
           <img src="https://avatars.githubusercontent.com/u/150876334?v=4" className={`w-48 h-48 rounded-full ${mode ? "bg-yellow-500" : "bg-yellow-700"} border-4 bg-clip-border p-3 hover:scale-110 transition duration-400 cursor-pointer`} alt="FIRKOH" />
         </div>
         <div className='mt-5 '>
-          <p>Halo, nama saya Firgenius Kolose Hombore; saya adalah Front End Developer Web asal Papua; saya memiliki pengalaman di bidang pemrograman Html, Css, dan Javascript dan juga framework seperti Bootstrap, Tailwind, React. saya mempunyai hobi lain yaitu mendengarkan musik dan bermain games.</p>
+          <p>Halo, nama saya Firgenius Kolose Hombore; saya adalah Front End Developer Web asal Papua; saya memiliki pengalaman di bidang pemrograman Html, Css, dan Javascript dan juga framework seperti Bootstrap, Tailwind, React. saya mempunyai hobi lain yaitu mendengarkan musik dan bermain Games.</p>
           <p>Saya adalah orang yang sangat tertarik dengan dunia IT dan saya sangat senang untuk belajar hal baru. jika anda inggin menghubungi saya, silahkan klik tombol kanan di</p>
         </div>
         <div className='my-10'>
