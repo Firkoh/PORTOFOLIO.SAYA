@@ -25,7 +25,7 @@ const Home = () => {
     <section className={`flex ${mode ? "bg-gray-500 text-yellow-500" : "bg-black text-yellow-700"} duration-[400ms] transition-all ease-in-out`}>
       <div className={`${mode ? "bg-slate-800 text-yellow-500" : "bg-[#0e0e0e] text-yellow-700"} min-h-screen ${open ? "w-80" : "w-20"} duration-[1000ms] text-gray-100 px-4 transition-all ease-in-out fixed top-0 left-0 h-full z-10`}>
 
-        <div className="py-3 flex justify-center">
+        <div className="py-3 flex justify-end">
           <HiMenuAlt3 size={26} className={`${mode ? "text-yellow-500" : "text-yellow-700"} cursor-pointer opacity-50 hover:text-white hover:opacity-100 transition duration-300`} onClick={() => setOpen(!open)} />
         </div>
         <nav className="flex flex-col gap-4 mt-4">
