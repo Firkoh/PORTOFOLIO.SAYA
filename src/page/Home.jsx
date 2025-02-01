@@ -31,10 +31,8 @@ const Home = () => {
 
   const ktk = [
     { judul: "Instagram", link: "https://www.instagram.com/firgenius_hombore/", icon: FaInstagram, classs:"hover:text-red-500" },
-    { judul: "Facebook", link: "https://www.instagram.com/firgenius_hombore/", icon: FaFacebook,classs:"hover:text-blue-500"},
-    { judul: "Whatsapp", link: "https://www.instagram.com/firgenius_hombore/", icon: FaWhatsapp,classs:"hover:text-green-500" }
-  ];
-
+    { judul: "Facebook", link: "https://www.facebook.com/share/1D7FMf74sN/", icon: FaFacebook,classs:"hover:text-blue-500"},
+    { judul: "Hubungi WhatsApp", link: "https://wa.me/+6282248766797?text=hello%20Firgenius%20ingin%20membuat%20Website", icon: FaWhatsapp, classs: "hover:text-green-500" }  ];
   return (
     // ini untuk menampilkan tampilan halaman
     <section className={`flex ${mode ? "bg-gray-500 text-black" : "bg-black text-yellow-700"} duration-[400ms] transition-all ease-in-out`}>
@@ -123,12 +121,12 @@ const Home = () => {
 
         {/* ini untuk menampilkan tampilan kontak */}
         <div className='my-10'>
-          <h2 className="text-2xl font-bold text-center cursor-pointer" id='kontak'>Kontak</h2>
+          <h2 className="text-2xl font-bold text-center" id='kontak'>Kontak</h2>
           <div className="flex justify-center space-x-4">
             {ktk.map((a) => (
-              <div className='my-3 text-[80px]' key={a.judul}>
+              <a className='my-3 text-[80px] cursor-pointer' key={a.judul} target='_blank' href={a.link}>
                     <a.icon className={`${a.classs}`} icon={a.judul}  />
-              </div>
+              </a>
             ))}  
           </div>
         </div>
