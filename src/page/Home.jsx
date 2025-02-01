@@ -1,15 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { HiMenuAlt3 } from 'react-icons/hi';
 import { MdOutlineDashboard, MdOutlineCastForEducation } from 'react-icons/md';
 import { TiContacts } from "react-icons/ti";
 import { PiCertificateFill } from "react-icons/pi";
 import { AiFillCodeSandboxSquare } from "react-icons/ai";
 import { CiDark, CiLight } from "react-icons/ci";
-
-import { Link } from 'react-router-dom';
+import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
+import { Icon } from '@mui/material';
 
 const Home = () => {
-
   const [open, setOpen] = useState(true);
   const [mode, setMode] = useState(false);
 
@@ -18,51 +17,124 @@ const Home = () => {
     { name: "Riwayat Pendidikan", link: "/riwayat", icon: MdOutlineCastForEducation },
     { name: "Pengalaman Programing", link: "/pengalaman", icon: AiFillCodeSandboxSquare },
     { name: "Sertifikat", link: "/sertifikat", icon: PiCertificateFill },
-    { name: "Kontak", link: "/kontak", icon: TiContacts }
-  ]
+    { name: "Kontak", link: "/kontak", icon: TiContacts },
+  ];
+
+  const porto = [
+    { judul: "Loka Pspl", link: "https://github.com/Firkoh/Kantor_Loka_PSPL_Sorong" },
+    { judul: "Dinas Pendidikan", link: "https://github.com/Firkoh/web_Dinas_Pendidikan_sederhana" },
+    { judul: "Dokumentasi React", link: "https://github.com/Firkoh/Tail" },
+    { judul: "Web Distrik Mawabuan", link: "https://github.com/Firkoh/W_DM" },
+    { judul: "Distrik Malasilen", link: "https://github.com/Firkoh/KMalasil" },
+    { judul: "Portofolio Web", link: "https://github.com/Firkoh/Portofolio-Web" },
+  ];
+
+  const ktk = [
+    { judul: "Instagram", link: "https://www.instagram.com/firgenius_hombore/", icon: FaInstagram, classs:"hover:text-red-500" },
+    { judul: "Facebook", link: "https://www.instagram.com/firgenius_hombore/", icon: FaFacebook,classs:"hover:text-blue-500"},
+    { judul: "Whatsapp", link: "https://www.instagram.com/firgenius_hombore/", icon: FaWhatsapp,classs:"hover:text-green-500" }
+  ];
 
   return (
-    <section className={`flex ${mode ? "bg-gray-500 text-yellow-500" : "bg-black text-yellow-700"} duration-[400ms] transition-all ease-in-out`}>
-      <div className={`${mode ? "bg-slate-800 text-yellow-500" : "bg-[#0e0e0e] text-yellow-700"} min-h-screen ${open ? "w-80" : "w-20"} duration-[1000ms] text-gray-100 px-4 transition-all ease-in-out fixed top-0 left-0 h-full z-10`}>
+    // ini untuk menampilkan tampilan halaman
+    <section className={`flex ${mode ? "bg-gray-500 text-black" : "bg-black text-yellow-700"} duration-[400ms] transition-all ease-in-out`}>
 
-        <div className="py-3 flex justify-end">
-          <HiMenuAlt3 size={26} className={`${mode ? "text-yellow-500" : "text-yellow-700"} cursor-pointer opacity-50 hover:text-white hover:opacity-100 transition duration-300`} onClick={() => setOpen(!open)} />
+      {/* ini menampilkan tampilan samping sidebar*/}
+      <div className={`${mode ? "bg-slate-300 text-black" : "bg-[#0e0e0e] text-yellow-700"} min-h-screen ${open ? "w-80" : "w-20"} duration-[1000ms] px-4 transition-all ease-in-out fixed top-0 left-0 h-full z-10`}>
+
+        {/* ini untuk menampilkan logo */}
+        <div className="py-3 flex justify-center">
+          <HiMenuAlt3 size={26} className={`${mode ? "text-black" : "text-yellow-700"} cursor-pointer opacity-50 ${mode ? "hover:text-black" : "hover:text-white"} hover:opacity-100 transition duration-300`} onClick={() => setOpen(!open)} />
         </div>
+
+        {/* ini untuk menampilkan menu */}
         <nav className="flex flex-col gap-4 mt-4">
           {menus.map((menu, index) => (
-            <a href={menu.link} key={index} className=" text-center hover:text-white flex items-center gap-3" id={menu.link}>
+            <a href={menu.link} key={index} className={`group text-center ${mode ? "hover:text-gray-500" : "hover:text-white"} flex items-center gap-3`} id={menu.link}>
               <menu.icon size={24} />
-              <span className={`${open ? "" : "hidden"} `}>{menu.name}</span>
+              <span className={`${open ? "" : "hidden"} whitespace-pre duration-500 ${!open && 'opacity-0 translate-x-28 oveflow-hidden'} `}>{menu.name}</span>
+              <h4 className={`${open && 'hidden'} absolute left-48 bg-black text-black 
+        ${!mode && 'bg-yellow-800 '} ${mode && 'text-gray-500'} font-semibold whitespace-pre rounded-md drop-shadow-lg px-0 w-0 overflow-hidden py-1 group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit`}>{menu.name}</h4>
             </a>
           ))}
+          {/* ini untuk light dan dark mode */}
           <a
-            className=" hover:text-white flex items-center gap-2 mt-40"
+            className={`group hover:text-gray-500 ${!mode && 'hover:text-white'}  flex items-center gap-2 mt-40 cursor-pointer`}
             onClick={() => setMode(!mode)}
           >
             {!mode ? <CiLight size={24} /> : <CiDark size={24} />}
-            <span className={`${open ? "" : "hidden"} whitespace-pre transition duration-300`}>{!mode ? "Light" : "Dark"}</span>
+            <span className={`${open ? "" : "hidden"}`}>{!mode ? "Terang" : "Gelap"}</span>
+            <h4 className={`${open && 'hidden'} absolute left-48 bg-black text-black 
+        ${!mode && 'bg-yellow-800 '} ${mode && 'text-gray-800'} font-semibold whitespace-pre rounded-md drop-shadow-lg px-0 w-0 overflow-hidden py-1 group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit`}>Ganti Ke Mode {!mode ? <div className='text-white'>Terang</div> : <div className='text-gray-800'>Gelap</div>}</h4>
           </a>
         </nav>
       </div>
+
+      {/* ini untuk menampilkan tampilan isi */}
       <div className={`flex-1 ${open ? "ml-[350px]" : "ml-[100px]"} transition-all duration-[1000ms]`}>
         <h2 className="text-2xl font-bold text-center cursor-pointer" id='profil'>Portofolio</h2>
-        <h2 className="text-2xl font-bold text-center cursor-pointer">Profil</h2>
+        <h2 className="text-2xl font-bold text-center cursor-pointer">Profil Firgenius Kolose Hombore</h2>
         <div className="flex justify-center mt-5" >
-          <img src="https://avatars.githubusercontent.com/u/150876334?v=4" className={`w-48 h-48 rounded-full ${mode ? "bg-yellow-500" : "bg-yellow-700"} border-4 bg-clip-border p-3 hover:scale-110 transition duration-400 cursor-pointer`} alt="FIRKOH" />
+          <img src="https://avatars.githubusercontent.com/u/150876334?v=4" className={`w-48 h-48 rounded-full ${mode ? "bg-black duration-500" : "bg-yellow-700 duration-500"} border-4 bg-clip-border p-3 hover:scale-110 transition duration-300 cursor-pointer`} alt="FIRKOH" />
         </div>
-        <div className='mt-5 '>
+
+        {/* ini untuk menampilkan tampilan profil */}
+        <div className='mt-5 text-xl'>
           <p>Halo, nama saya Firgenius Kolose Hombore; saya adalah Front End Developer Web asal Papua; saya memiliki pengalaman di bidang pemrograman Html, Css, dan Javascript dan juga framework seperti Bootstrap, Tailwind, React. saya mempunyai hobi lain yaitu mendengarkan musik dan bermain games.</p>
           <p>Saya adalah orang yang sangat tertarik dengan dunia IT dan saya sangat senang untuk belajar hal baru. jika anda inggin menghubungi saya, silahkan klik tombol kanan di</p>
         </div>
+
+        {/* ini untuk menampilkan tampilan riwayat pendidikan */}
         <div className='my-10'>
           <h2 className="text-2xl font-bold text-center cursor-pointer" id='riwayat'>Riwayat Pendidikan</h2>
+
+          <ul className="mt-4 text-center text-xl ">
+            <li>TK - TK Kartika Mimika (2007-2008)</li>
+            <li>SD - SDN 4 Mimika (2008-2014)</li>
+            <li>SMP - SMPN 2 Mimika (2014-2017)</li>
+            <li>SMA - SMAN 2 Sorong (2017-2018)</li>
+            <li>SMA - SMAN 1 Fakfak (2018-2020)</li>
+            <li>S1 - Sistem Informasi, Universitas Victory Sorong (2020-2024)</li>
+          </ul>
         </div>
 
-      </div>
+        {/* ini untuk menampilkan tampilan pengalaman programing */}
+        <div className='my-10'>
+          <h2 className="text-2xl font-bold text-center cursor-pointer" id='pengalaman'>Pengalaman Programing</h2>
+          <div className={`text-center text-xl`}>
+            {porto.map((a) => (
+              <div className='my-2'>
+                <a className='hover:text-white unde' target='_blank' href={a.link}>{a.judul}</a>
+              </div>
+            ))}
+          </div>
+        </div>
 
+
+
+        {/* ini untuk menampilkan tampilan sertifikat */}
+        <div className='my-10'>
+          <h2 className="text-2xl font-bold text-center cursor-pointer" id='pengalaman'>Sertifikat</h2>
+          <div className="flex justify-center space-x-4">
+
+          </div>
+        </div>
+
+
+        {/* ini untuk menampilkan tampilan kontak */}
+        <div className='my-10'>
+          <h2 className="text-2xl font-bold text-center cursor-pointer" id='kontak'>Kontak</h2>
+          <div className="flex justify-center space-x-4">
+            {ktk.map((a) => (
+              <div className='my-3 text-[80px]' key={a.judul}>
+                    <a.icon className={`${a.classs}`} icon={a.judul}  />
+              </div>
+            ))}  
+          </div>
+        </div>
+      </div>
     </section>
   );
-};  
+};
 
 export default Home;
-
