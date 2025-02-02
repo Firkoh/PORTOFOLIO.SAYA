@@ -1,41 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { HiMenuAlt3 } from 'react-icons/hi';
-import { MdOutlineDashboard, MdOutlineCastForEducation } from 'react-icons/md';
-import { TiContacts } from "react-icons/ti";
-import { PiCertificateFill } from "react-icons/pi";
-import { AiFillCodeSandboxSquare } from "react-icons/ai";
 import { CiDark, CiLight } from "react-icons/ci";
-import { FaInstagram, FaFacebook, FaWhatsapp, FaAtlas } from "react-icons/fa";
-import { Icon } from '@mui/material';
+import {menus} from "../components/sidebar.js";
+import {ktk,porto,ikon} from '../components/portofolio.js';
 
-// gambar
+
 
 const Home = () => {
   const [open, setOpen] = useState(true);
   const [mode, setMode] = useState(false);
-
-  const menus = [
-    { name: "Profil", link: "/profil", icon: MdOutlineDashboard },
-    { name: "Riwayat", link: "/riwayat", icon: MdOutlineCastForEducation },
-    { name: "Portofolio", link: "/pengalaman", icon: AiFillCodeSandboxSquare },
-    { name: "Peguasaan program", link: "/pengalaman", icon: FaAtlas },
-    { name: "Kontak", link: "/kontak", icon: TiContacts },
-  ];
-
-  const porto = [
-    { judul: "Loka Pspl", link: "https://github.com/Firkoh/Kantor_Loka_PSPL_Sorong" },
-    { judul: "Dinas Pendidikan", link: "https://github.com/Firkoh/web_Dinas_Pendidikan_sederhana" },
-    { judul: "Dokumentasi React", link: "https://github.com/Firkoh/Tail" },
-    { judul: "Web Distrik Mawabuan", link: "https://github.com/Firkoh/W_DM" },
-    { judul: "Distrik Malasilen", link: "https://github.com/Firkoh/KMalasil" },
-    { judul: "Portofolio Web", link: "https://github.com/Firkoh/Portofolio-Web" },
-  ];
-
-  const ktk = [
-    { judul: "Instagram", link: "https://www.instagram.com/firgenius_hombore/", icon: FaInstagram, classs: "hover:text-red-500" },
-    { judul: "Facebook", link: "https://www.facebook.com/share/1D7FMf74sN/", icon: FaFacebook, classs: "hover:text-blue-500" },
-    { judul: "Hubungi WhatsApp", link: "https://wa.me/+6282248766797?text=hello%20Firgenius%20ingin%20membuat%20Website", icon: FaWhatsapp, classs: "hover:text-green-500" }
-  ];
 
   return (
     <section className={`flex ${mode ? "bg-gray-500 text-black" : "bg-black text-yellow-700"} duration-[400ms] transition-all ease-in-out`}>
@@ -59,7 +32,7 @@ const Home = () => {
             {!mode ? <CiLight size={24} /> : <CiDark size={24} />}
             <span className={`${open ? "" : "hidden"}`}>{!mode ? "Terang" : "Gelap"}</span>
             <h4 className={`${open && 'hidden'} absolute left-48 bg-black text-black 
-        ${!mode && 'bg-yellow-800 '} ${mode && 'text-gray-800'} font-semibold whitespace-pre rounded-md drop-shadow-lg px-0 w-0 overflow-hidden py-1 group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit`}>Ganti Ke Mode {!mode ? <div className='text-white'>Terang</div> : <div className='text-gray-800'>Gelap</div>}</h4>
+        ${!mode && 'bg-yellow-800 '} ${mode && 'text-gray-800'} font-semibold whitespace-pre rounded-md drop-shadow-lg px-0 w-0 overflow-hidden py-1 group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit`}>{!mode ? <div className='text-white'>Terangkan</div> : <div className='text-gray-800'>Gelapkan</div>}</h4>
           </a>
         </nav>
       </div>
@@ -69,6 +42,7 @@ const Home = () => {
         <div className="flex justify-center mt-5" >
           <img src="https://avatars.githubusercontent.com/u/150876334?v=4" className={`w-48 h-48 rounded-full ${mode ? "bg-black duration-500" : "bg-yellow-700 duration-500"} border-4 bg-clip-border p-3 hover:scale-110 transition duration-300 cursor-pointer`} alt="FIRKOH" />
         </div>
+
         <div className='mt-5 text-xl'>
           <p>Halo, nama saya Firgenius Kolose Hombore; saya adalah Front End Developer Web asal Papua; saya memiliki pengalaman di bidang pemrograman Html, Css, dan Javascript dan juga framework seperti Bootstrap, Tailwind, React. saya mempunyai hobi lain yaitu mendengarkan musik dan bermain games.</p>
           <p>Saya adalah orang yang sangat tertarik dengan dunia IT dan saya sangat senang untuk belajar hal baru. jika anda inggin menghubungi saya, silahkan klik tombol kanan di</p>
@@ -94,11 +68,16 @@ const Home = () => {
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:ml-10 mt-6 md:mt-0">
-          <div className="flex items-center justify-center transition-colors duration-300">
-            <img src="html.svg" className="w-16 h-16 md:w-20 md:h-20 p-2 rounded group-edit hover:bg-[#e34c26] transition duration-300" alt="HTML" />
-          </div>
-        </div>
+
+{/* ikon html css js dan lain lain */}
+        <div id='program' className="grid grid-cols-3 gap-4 my-10">
+          {ikon.map((a)=>(
+            <div className={`cursor-pointer flex flex-col items-center justify-center transition-colors duration-300 group ${a.bg}`}>
+              <a.icon className={`${mode ? "text-black":"text-yellow-800"} w-16 h-16 md:w-20 md:h-20 p-2 rounded group-hover:text-white transition duration-300 hover:${a.hover}`}/>
+              <span className="opacity-0 text-white group-hover:opacity-100 text-sm mt-1 transition-opacity duration-300">{a.name}</span>
+            </div>
+          ))}        </div>
+{/* ini kontak  */}
         <div className='my-10'>
           <h2 className="text-2xl font-bold text-center" id='kontak'>{menus[4].name}</h2>
           <div className="flex justify-center space-x-4">
